@@ -51,7 +51,12 @@ description: 生成 ipine 风格的中文正文配图。用于用户要求为中
 
 ### 3. 单张生成
 
-如果用户明确要求"生成 / 输出 / 做图 / 帮我生成"，不要停下来等确认；用内置 `image_gen` 每张单独生成。不要把多张图拼在一张里。
+如果用户明确要求"生成 / 输出 / 做图 / 帮我生成"，不要停下来等确认；用 `./scripts/generate_image.py` 调用 DALL-E 3 每张单独生成。不要把多张图拼在一张里。
+
+生成命令示例：
+```bash
+python3 scripts/generate_image.py -p "<英文prompt>" -o "assets/article-slug/01-topic.png"
+```
 
 每张图只讲一个核心结构。提示词必须包含：
 
