@@ -6,62 +6,54 @@ tags:
   - Skill
 ---
 
-# 虾线橘猫 Prompt 模板
+# 虾线橘猫 Prompt 模板（即梦版）
 
-> 基于 `ian-xiaohei-illustrations` 的 `prompt-template.md` 改写。
-> 核心变化：把"小黑"替换为"虾线橘猫"，保留整体结构和约束。
-
----
-
-## 主生成 Prompt
-
-Generate one standalone 16:9 horizontal Chinese article illustration.
-
-Pure white background. Minimalist black hand-drawn line art. Slightly wobbly pen lines. Lots of empty white space.
-
-The recurring character is **虾线橘猫**, an orange-and-white cat with a distinctive orange stripe running down the center of its back (like a shrimp on its back). White face mask, orange patches on top of head and cheeks. Round eyes with blank serious expression. Slightly chubby but proportional cat body. Short thick legs. Tail has orange-and-white rings. Slightly uneven hand-drawn body outline.
-
-虾线橘猫 must perform the core conceptual action, not decorate the scene. 虾线橘猫 should be serious, deadpan, and slightly bizarre, not cute. The orange shrimp-line on its back must be clearly visible.
+> 即梦中文 prompt 已验证模板。严格按此结构，不可自由发挥。
 
 ---
 
-## 变量占位符
+## 主生成 Prompt 格式（即梦验证）
 
-| 变量 | 说明 |
-|------|------|
-| `{{theme}}` | 文章主题/核心概念 |
-| `{{structure_type}}` | 结构类型：Workflow / 系统局部 / 前后对比 / 角色状态 / 概念隐喻 / 方法分层 / 地图路线 / 小漫画分镜 |
-| `{{core_idea}}` | 这张图要传达的核心认知 |
-| `{{composition}}` | 构图描述 |
-| `{{suggested_elements}}` | 建议出现的物件或场景元素 |
-| `{{labels}}` | 中文手写批注内容（2-8 个字每处，最多 5-8 处） |
+**用自然流动的中文，不要分块、不要列表、不要"猫咪特征"/"画面要求"标题。**
 
----
+```
+简笔画风格，手绘线稿，纯白背景。[猫咪做什么动作，什么表情，什么场景]。橘白相间猫咪，背部正中央一条纵向橘色条纹。极细黑色线稿，内部不上色，大量留白，[尺寸]构图。
+```
 
-## 颜色规则
+**示例（来自验证通过的 prompt）：**
+- `简笔画风格，手绘线稿，纯白背景。橘白相间猫咪用前爪把不同形状的纸片推进三个纸箱。背部正中央一条明显的橘色条纹。`
+- `简笔画风格，手绘线稿，纯白背景。橘白相间猫咪站立用后腿走路，前爪抱着一叠文件。背部正中央一条纵向橘色条纹。`
 
-- **Black**: main line art, 虾线橘猫 outline, structure, main text, primary objects
-- **Orange**: 虾线橘猫's orange patches and shrimp-line, main flow/path/arrows
-- **Red**: only for key warnings/problems/results
-- **Blue**: only for secondary notes or feedback/system state
+**核心原则：**
+- 开头固定：`简笔画风格，手绘线稿，纯白背景。`
+- 一句话说清猫在做什么 + 什么表情
+- 必须提到"背部正中央橘色条纹"
+- "极细黑色线稿，内部不上色，大量留白"一句收尾
+- 不要写"猫咪特征""画面要求"等结构化标题
+- 总长度控制在 150 字以内
 
 ---
 
 ## 关键约束
 
-- One image explains only one core structure.
-- Keep the main subject around 40%-60% of the canvas.
-- Preserve at least 35% blank white space.
-- Do not write a title in the top-left corner.
-- Do not write the structure type on the image.
-- 虾线橘猫's back shrimp-line must be visible in every image.
+- **虾线必须在背上**：用侧身或3/4角度，让背部朝向画面。正面坐姿会让即梦把条纹画到胸前——绝对禁止。
+- **内部不上色**：猫的身体白色部分保持纯白，不上任何颜色。仅橘色条纹和脸颊橘色斑块上色。
+- **无装饰元素**：不要对话气泡、手机、纸条、红虾、文字标签。场景元素只用黑色线稿勾勒，不上色。
+- **手绘感**："线条略带手绘抖动感"是必须保留的关键约束词。
 
 ---
 
-## 图像编辑 Prompt
+## 颜色规则
 
-### 1. 移除标题
-"Remove only the handwritten title and its underline from the top-left corner. Fill that area with the same clean white background."
+- **黑色**：主体线稿、猫的轮廓、场景元素线框
+- **橘色**：仅猫身上的橘色条纹（虾线）和脸颊橘色斑块
+- 不用红色、蓝色、其他颜色
 
-### 2. 强化动作主体
-"Make 虾线橘猫 more central to the conceptual action. 虾线橘猫 should be doing the strange work that explains the idea, not standing beside the diagram. Ensure the orange shrimp-line on its back is clearly visible."
+---
+
+## 即梦尺寸参数
+
+| 参数 | 即梦尺寸 | 用途 |
+|------|---------|------|
+| `16:9` | 2560×1440 | 贴图号横版 |
+| `3:4` | 1728×2304 | 小红书竖版 |
