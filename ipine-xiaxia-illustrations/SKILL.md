@@ -49,21 +49,26 @@ description: 生成 ipine 风格的中文正文配图。用于用户要求为中
 
 默认 4-8 张。文章很短时 1-3 张；长文也不要轻易超过 9 张。够用就好，避免把正文做成画册。
 
-### 3. 单张生成
+### 3. 批量生成（通过 jimeng-batch）
 
-如果用户明确要求"生成 / 输出 / 做图 / 帮我生成"，不要停下来等确认；用 `./scripts/generate_image.py` 调用 DALL-E 3 每张单独生成。不要把多张图拼在一张里。
+如果用户明确要求"生成 / 输出 / 做图 / 帮我生成"，不要停下来等确认。
 
-生成命令示例：
-```bash
-python3 scripts/generate_image.py -p "<英文prompt>" -o "assets/article-slug/01-topic.png"
-```
+**生成流程**：
+
+1. 按风格 DNA 设计每张图的 prompt（中文，详细描述）
+2. 将 prompt 写入临时 manifest 文件（格式参考 `凤梨/贴图号/archive/assets/即梦生成清单.md`）
+3. 调用 jimeng-batch 批量生成：
+   ```bash
+   cd 凤梨/claude-code/skills/jimeng-batch && bun scripts/batch.ts "<manifest路径>" "<输出目录>" <尺寸>
+   ```
+   尺寸：贴图号用 `16:9`，小红书/RED 用 `3:4`
 
 每张图只讲一个核心结构。提示词必须包含：
 
-- 16:9 横版中文正文配图
+- 16:9 横版或 3:4 竖版（根据平台）
 - 纯白背景
 - 黑色手绘线稿
-- 少量红色/橙色/蓝色中文手写批注
+- 少量红色/橙色/蓝色中文手写批注（仅必要时）
 - 大量留白
 - 虾线橘猫作为核心动作主体
 - 虾线橘猫背上的虾线清晰可见
