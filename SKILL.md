@@ -16,7 +16,7 @@ description: 生成 ipine 风格的中文正文配图。用于用户要求为中
 按任务需要读取，不要一次塞满上下文：
 
 - `references/style-dna.md`：风格 DNA、颜色、文字、禁忌。
-- `references/xiaohei-ip.md`：虾线橘猫 IP 的形象、性格、动作库和禁忌。
+- `references/xiaxia-ip.md`：虾线橘猫 IP 的形象、性格、动作库和禁忌。
 - `references/composition-patterns.md`：结构类型、原创隐喻方法和反复刻规则。
 - `references/prompt-template.md`：单张生图提示词模板。
 - `references/qa-checklist.md`：生成后检查和迭代规则。
